@@ -1,5 +1,6 @@
 package co.ptm.otel.controller;
 
+import co.ptm.otel.model.Book;
 import co.ptm.otel.model.Hero;
 import co.ptm.otel.service.HeroService;
 import io.micrometer.tracing.Tracer;
@@ -22,4 +23,10 @@ public class HeroController {
         log.info("calling getHero");
       return  heroService.getHero();
     }
+
+    @GetMapping("/book")
+    public Book getBook(){
+        return  heroService.getBook();
+    }
+
 }
