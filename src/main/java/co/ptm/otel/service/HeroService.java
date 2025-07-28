@@ -67,7 +67,9 @@ public class HeroService {
                 .uri("http://localhost:8081/api/book")
                 .retrieve()
                 .bodyToMono(Book.class)
-                .doOnNext(entity -> log.info("from do on next!"))
+                .doOnNext(entity ->
+                        log.info("from do on next!")
+                )
                 .contextCapture()
                 .block();
 
