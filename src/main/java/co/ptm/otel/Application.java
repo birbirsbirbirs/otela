@@ -14,6 +14,7 @@ public class Application {
 
     public static void main(String[] args) {
         Hooks.enableAutomaticContextPropagation();
+
         ContextRegistry.getInstance().registerThreadLocalAccessor(
           "cid",
                 () -> MDC.get("cid"),
@@ -21,18 +22,25 @@ public class Application {
                 () -> MDC.remove("cid")
         );
 
+        ContextRegistry.getInstance().registerThreadLocalAccessor(
+          "heroXCorrelation",
+                () -> MDC.get("hero-x-correlation"),
+                heroXCorrelation -> MDC.put("hero-x-correlation",heroXCorrelation),
+                () -> MDC.remove("hero-x-correlation")
+        );
+
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    Filter correlationFilter(){
-        return (request,response,chain)->{
-            String name=request.getParameter("name");
-            if(name != null){
-                MDC.put("cid",name);
-            }
-            chain.doFilter(request,response);
-        };
-    }
+//    @Bean
+//    Filter correlationFilter(){
+//        return (request,response,chain)->{
+//            String name=request.getParameter("name");
+//            if(name != null){
+//                MDC.put("cid",name);
+//            }
+//            chain.doFilter(request,response);
+//        };
+//    }
 
 }

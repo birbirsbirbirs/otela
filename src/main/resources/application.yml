@@ -3,4 +3,4 @@ spring:
     name: otela
 logging:
   pattern:
-    level: "[cid:%X{cid}] %5p [${spring.application.name},%X{traceId},%X{spanId}]]"
+    level: "[cid:%X{cid}] [hero-x-correlation:%X{hero-x-correlation}] %5p [${spring.application.name},%X{traceId},%X{spanId}]]"
