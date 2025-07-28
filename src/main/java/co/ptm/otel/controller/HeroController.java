@@ -29,4 +29,9 @@ public class HeroController {
         return  heroService.getBook();
     }
 
+    @GetMapping("/book/webclient")
+    public Book getBookWebclient(){
+        return  heroService.getBookWebClient();
+    }
+
 }
